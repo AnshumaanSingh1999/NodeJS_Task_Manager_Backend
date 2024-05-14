@@ -58,13 +58,15 @@ app.post("/signin",(req,res)=>{
     })
 })
 
-app.post("/usertasks",(req,res)=>{
+app.get("/usertasks",(req,res)=>{
     const q="select * from tasks_db"
     db.query(q,(err,data)=>{
         if(err){
             return res.json(err)
         }
         else if(data){
+            console.log(data)
+            console.log(typeof(data))
             return res.json(data)
         }
     })
