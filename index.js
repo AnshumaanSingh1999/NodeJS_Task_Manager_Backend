@@ -58,19 +58,59 @@ app.post("/signin",(req,res)=>{
     })
 })
 
-app.get("/usertasks",(req,res)=>{
+app.get("/tasks",(req,res)=>{
     const q="select * from tasks_db"
     db.query(q,(err,data)=>{
         if(err){
             return res.json(err)
         }
         else if(data){
-            console.log(data)
-            console.log(typeof(data))
+            
             return res.json(data)
         }
     })
 
+})
+
+
+
+app.post("/usertasks",(req,res)=>{
+    const value=[
+        req.body.userid=String(req.body.userid),
+    ]
+    const q="select * from tasks_db where userid=?"
+    db.query(q,[value],(err,data)=>{
+        if(err){
+            return res.json(err)
+           
+        }
+        else if(data){
+            
+
+
+            console.log(data)
+            return res.json(data)
+        }
+    })
+})
+
+
+
+app.get("/usertasks:userid",(req,res)=>{
+    const value=string(req.params.userid)
+
+    const q="select * from tasks_db where userid=?"
+    db.query(q,[value],(err,data)=>{
+        if(err){
+            return res.json(err)
+           
+        }
+        else if(data){
+            
+            console.log(data)
+            return res.json(data)
+        }
+    })
 })
 
 
