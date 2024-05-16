@@ -58,6 +58,7 @@ app.post("/signin",(req,res)=>{
     })
 })
 
+
 app.get("/tasks",(req,res)=>{
     const q="select * from tasks_db"
     db.query(q,(err,data)=>{
@@ -76,18 +77,14 @@ app.get("/tasks",(req,res)=>{
 
 app.post("/usertasks",(req,res)=>{
     const value=[
-        req.body.userid=String(req.body.userid),
+        req.body.userid=String(req.body.userid)
     ]
     const q="select * from tasks_db where userid=?"
     db.query(q,[value],(err,data)=>{
         if(err){
             return res.json(err)
-           
         }
         else if(data){
-            
-
-
             console.log(data)
             return res.json(data)
         }
